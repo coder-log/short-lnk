@@ -6,7 +6,11 @@ import Signup from './../imports/ui/Signup';
 import Link from './../imports/ui/Link';
 import NotFound from './../imports/ui/NotFound';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
+
+const history = createBrowserHistory();
+
+window.browserHistory = history;
 
 
 const routes = (
