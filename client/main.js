@@ -7,6 +7,13 @@ import Link from './../imports/ui/Link';
 import NotFound from './../imports/ui/NotFound';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
+import {Tracker} from 'meteor/tracker';
+
+Tracker.autorun(()=>{
+  isAuthenticated =  !!Meteor.user();
+  console.log('isAuthenticated', isAuthenticated)
+});
+
 
 const history = createBrowserHistory();
 
@@ -18,7 +25,7 @@ const routes = (
     <Switch>
       <Route exact path = "/" component = {Login} />
       <Route exact path = "/signup" component = {Signup} />
-      <Route exact path = "/link" component = {Link}/>
+      <Route exact path = "/links" component = {Link}/>
       <Route exact path = "*" component = {NotFound} />
     </Switch>
   </Router>

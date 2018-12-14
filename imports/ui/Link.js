@@ -1,11 +1,10 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import {Accounts} from 'meteor/accounts-base';
+
 
 export default class Link extends React.Component {
     onLogout() {
-        const history = createBrowserHistory({forceRefresh:true});
-        history.push('/');
+       Accounts.logout();
     }
     render(){
         return (
