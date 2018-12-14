@@ -9,16 +9,28 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import {Tracker} from 'meteor/tracker';
 
-Tracker.autorun(()=>{
-  isAuthenticated =  !!Meteor.user();
-  console.log('isAuthenticated', isAuthenticated)
-});
-
-
+const authenticatedPages = ['/links'];
+const unauthenticatedPages = ['/','/signup'];
 const history = createBrowserHistory();
 
 window.browserHistory = history;
 
+Tracker.autorun(()=>{
+  isAuthenticated =  !!Meteor.user();
+  const pathname = location.pathname;
+  const isAuthenticatedPage = authenticatedPages.includes(pathname);
+  const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
+
+  if(isAuthenticatedPage && !isAuthenticated){
+    history.push('/');
+  } else if(isUnauthenticatedPage && isAuthenticated) {
+    history.push('/links');
+  }
+
+  console.log('isAuthenticated', isAuthenticated);
+  console.log('isAuthenticatedPage', isAuthenticatedPage);
+  console.log('isUnauthenticatedPage', isUnauthenticatedPage);
+});
 
 const routes = (
   <Router>
