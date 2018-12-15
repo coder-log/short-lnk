@@ -5,13 +5,13 @@ import Login from './../imports/ui/Login';
 import Signup from './../imports/ui/Signup';
 import Link from './../imports/ui/Link';
 import NotFound from './../imports/ui/NotFound';
-import {BrowserRouter, Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import {Tracker} from 'meteor/tracker';
 
 const authenticatedPages = ['/links'];
 const unauthenticatedPages = ['/','/signup'];
-const history = createBrowserHistory();
+const history = createBrowserHistory( );
 
 window.browserHistory = history;
 
@@ -21,17 +21,11 @@ Tracker.autorun(()=>{
   const isAuthenticatedPage = authenticatedPages.includes(pathname);
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
 
-  if (isUnauthenticatedPage && isAuthenticated) {
-    history.push('/links');
-  } else if (isAuthenticatedPage && !isAuthenticated){
+  if(isAuthenticatedPage && !isAuthenticated){
     history.push('/');
+  } else if(isUnauthenticatedPage && isAuthenticated) {
+    history.push('/links');
   }
-
-  // if(isAuthenticatedPage && !isAuthenticated){
-  //   history.push('/');
-  // } else if(isUnauthenticatedPage && isAuthenticated) {
-  //   history.push('/links');
-  // }
 
   console.log('isAuthenticated', isAuthenticated);
   console.log('isAuthenticatedPage', isAuthenticatedPage);
@@ -39,8 +33,8 @@ Tracker.autorun(()=>{
 });
 
 const routes = (
-  <Router history={history}>
-     <Switch>
+  <Router>
+    <Switch> {/*Replace Switch to Div to see if works*/}
       <Route exact path = "/" component = {Login} />
       <Route exact path = "/signup" component = {Signup} />
       <Route exact path = "/links" component = {Link}/>
