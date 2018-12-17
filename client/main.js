@@ -21,16 +21,10 @@ Tracker.autorun(()=>{
   const isAuthenticatedPage = authenticatedPages.includes(pathname);
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
 
-  // if (isUnauthenticatedPage && isAuthenticated) {
-  //   history.push('/links');
-  // } else if (isAuthenticatedPage && !isAuthenticated){
-  //   history.push('/');
-  // }
-
   if(isAuthenticatedPage && !isAuthenticated){
-    history.push('/');
+    history.replace('/');
   } else if(isUnauthenticatedPage && isAuthenticated) {
-    history.push('/links');
+    history.replace('/links');
   }
 
   console.log('isAuthenticated', isAuthenticated);
