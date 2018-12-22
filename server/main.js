@@ -9,12 +9,17 @@ Meteor.startup(() => {
   Accounts.validateNewUser((user)=>{
     const email = user.emails[0].address;
 
-    new SimpleSchema({
-      email: {
-        type: String,
-        regEx: SimpleSchema.RegEx.Email
-      }
-    }).validate({email})
+    try {
+      new SimpleSchema({
+        email: {
+          type: String,
+          regEx: SimpleSchema.RegEx.Email
+        }
+      }).validate({email});
+    } catch(e) {
+      throw new Meteor.Error(400, e.message);
+    }
+    
     return true;
   });
 
