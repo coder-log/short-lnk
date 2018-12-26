@@ -12,7 +12,7 @@ export default class LinkList extends React.Component {
     }
 
     componentDidMount(){
-        Tracker.autorun(()=>{
+        this.linksTracker = Tracker.autorun(()=>{
             const links = Links.find().fetch();
             this.setState({ links });
           });
@@ -20,10 +20,14 @@ export default class LinkList extends React.Component {
     }
     
     componentWillUnmount(){
+        this.linksTracker.stop();
         console.log(' Component Will Unmount LinkList');
     }
 
     renderLinksListItems(){
+        return this.state.links.map((link) => {
+            return <p key={link._id} link={link}>{link.url}</p>;
+        });
 
     }
 
