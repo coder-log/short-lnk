@@ -4,7 +4,5 @@ import './../imports/api/links';
 
 Meteor.startup(() => {
   //code to run on server at startup
-    Meteor.call('greetUser', (err,res)=>{
-      console.log('Greet user args', err, res);
-    });
+    
    });
