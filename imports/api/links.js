@@ -19,6 +19,7 @@ Meteor.methods({
             new SimpleSchema({
             url: {
                 type: String,
+                label: 'Your link',
                 regEx: SimpleSchema.RegEx.Url
             }
             }).validate({url});
