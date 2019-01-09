@@ -15,6 +15,10 @@ export default class PrivateHeader extends Component {
                 <h1>{this.props.title}</h1>
                 <button onClick = {this.onLogout.bind(this)}>Log Out</button>
         </div>
-        )
+        );
     }
 }
+
+PrivateHeader.propTypes = {
+    title: React.PropTypes.string.isRequired;
+};
