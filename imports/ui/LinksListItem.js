@@ -18,7 +18,7 @@ export default class LinksListItem extends Component {
       <div>
           <p>{this.props.url}</p>
           <p>{this.props.shortUrl}</p>
-          <button ref="copy" data-clipboard-text={this.props.short}>Copy</button>
+          <button ref="copy" data-clipboard-text={this.props.shortUrl}>Copy</button>
         
       </div>
     );
