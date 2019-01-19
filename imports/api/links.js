@@ -35,14 +35,33 @@ Meteor.methods({
 
     'links.setVisibility'(_id, visible) {
         // Check if user is logged in. Throw an error if not.
-
+        if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
         // Create a simple schema to validate that _id is string
         //with length greeater than 1
         // visible is a boolean
+        new SimpleSchema({
+            _id: {
+                type: String,
+                min: 1
+            },
+            visible:{
+                type: Boolean
+            }
+            }).validate({_id,visible});
 
 
         //Links.update - where _id and this.userId match the doc
         //Set the visible property to the visible argument
+        Links.update({
+            _id,
+            userId: this.userId,
+        },{
+            $set:{
+                visible
+            }
+        });
     }
 
 });

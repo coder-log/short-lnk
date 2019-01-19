@@ -17,8 +17,8 @@ export default class LinksListItem extends Component {
     this.clipboard= new Clipboard(this.refs.copy);
 
     this.clipboard.on('success', () =>{
-      this.setState({justCopied:true});
-      setTimeout(()=>this.setState({justCopied:false}), 1000);
+      this.setState({ justCopied: true });
+      setTimeout(()=> this.setState({ justCopied:false }), 1000);
     }).on('error', ()=> {
       alert('Unable to copy. Please manually copy the link.');
     })
@@ -40,7 +40,7 @@ export default class LinksListItem extends Component {
           >{this.state.justCopied ? 'Copied':'Copy'}
           </button>
           <button onClick ={()=> {
-            Meteor.call('links.setVisibily', this.props._id, !this.props.visible)
+            Meteor.call('links.setVisibility', this.props._id, !this.props.visible)
           }}>
             {this.props.visible ? 'Hide' : 'Unhide'}
           </button>
