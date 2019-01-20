@@ -12,16 +12,8 @@ Tracker.autorun(()=>{
 });
 
 
-Tracker.autorun(()=>{
-  const name = Session.get('name');
-  console.log('Name: ', name)
-});
-
-Session.set('name', 'Andrew Mead');
-
-
 Meteor.startup(() => {
-    
+  Session.set('showVisible', true);
   ReactDOM.render(
     routes, document.getElementById('app')
   );
