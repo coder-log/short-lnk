@@ -6,7 +6,7 @@ export default () => {
         <div>
             <label>
                 <input type = "checkbox" onChange = { (e)=>{
-                    Session.set('showVisible', e.target.checked);
+                    Session.set('showVisible', !e.target.checked);
                 }}/>
                 Show hidden links
             </label>
